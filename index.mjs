@@ -11,13 +11,15 @@ await page.goto("https://google.com");
 const flow = await startFlow(page, {
   config: {
     extends: "lighthouse:default",
-    throttling: {
-      cpuSlowdownMultiplier: 8,
+    settings: {
+      throttling: {
+        cpuSlowdownMultiplier: 8,
+      },
     },
   },
 });
 await flow.startTimespan();
-await new Promise((resolve) => setTimeout(resolve, 10 * 1000));
+await new Promise((resolve) => setTimeout(resolve, 5 * 1000));
 await flow.endTimespan();
 
 await browser.close();
